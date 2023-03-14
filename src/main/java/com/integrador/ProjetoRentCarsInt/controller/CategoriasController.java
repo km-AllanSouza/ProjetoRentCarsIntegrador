@@ -42,7 +42,7 @@ public class CategoriasController {
     }
 
     @RequestMapping(value ="buscaid", method = RequestMethod.GET)
-    public ResponseEntity buscarAluguelID(@RequestParam("id") Long id){
+    public ResponseEntity buscarCategoriaID(@RequestParam("id") Long id){
         ObjectMapper mapper = new ObjectMapper();
 
         Optional<Categorias> categoriasOptional = categoriasService.buscarCategoriasID(id);

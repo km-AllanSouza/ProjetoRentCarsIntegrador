@@ -16,14 +16,14 @@ public class Categorias {
     @Column(name = "Categorias_IDs")
     private Long id;
 
-    private int qualificacao;
+    private int rating; //rating = qualificacao
 
     private String descricao;
 
     private String url;
 
-    public Categorias(int qualificacao, String descricao, String url) {
-        this.qualificacao = qualificacao;
+    public Categorias(int rating, String descricao, String url) {
+        this.rating = rating;
         this.descricao = descricao;
         this.url = url;
     }

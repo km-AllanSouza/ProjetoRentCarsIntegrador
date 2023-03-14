@@ -20,11 +20,11 @@ public class Aluguel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="Aluguel_IDs")
     private Long id;
+    @JoinColumn(name="Clientes_IDs")
+    private Long idCliente;
 
-    @JoinColumn(name="cliente_id")
-    private int idCliente;
-    @JoinColumn(name="carro_id")
-    private int idCarro;
+    @JoinColumn(name="Carros_IDs")
+    private Long idCarro;
 
     @DateTimeFormat(pattern="hh:mm:ss")
     private Time hr_Saida;
@@ -40,7 +40,7 @@ public class Aluguel {
     @JsonFormat(pattern = "dd-mm-yyyy")
     private Date dt_Entrega;
 
-    public Aluguel(int idCliente, int idCarro, Time hr_Saida, Date dt_Saida, Time hr_Entrega, Date dt_Entrega) {
+    public Aluguel(Long idCliente, Long idCarro, Time hr_Saida, Date dt_Saida, Time hr_Entrega, Date dt_Entrega) {
         this.idCliente = idCliente;
         this.idCarro = idCarro;
         this.hr_Saida = hr_Saida;

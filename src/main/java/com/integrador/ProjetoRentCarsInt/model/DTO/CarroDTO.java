@@ -3,6 +3,7 @@ package com.integrador.ProjetoRentCarsInt.model.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.integrador.ProjetoRentCarsInt.model.Carro;
+import com.integrador.ProjetoRentCarsInt.model.Categorias;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

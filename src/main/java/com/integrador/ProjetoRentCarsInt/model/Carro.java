@@ -22,6 +22,8 @@ public class Carro {
 
     private String cor;
 
+
+    @JoinColumn(name = "Categorias_IDs")
     private Long idCategoria;
 
     public Carro(String modelo, String marca, String cor, Long idCategoria) {

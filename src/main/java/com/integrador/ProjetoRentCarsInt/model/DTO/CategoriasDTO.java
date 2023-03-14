@@ -17,7 +17,7 @@ public class CategoriasDTO {
 
     private Long id;
 
-    private int qualificacao;
+    private int rating; //rating = qualificacao
 
     private String descricao;
 
@@ -26,7 +26,7 @@ public class CategoriasDTO {
     public CategoriasDTO(Categorias categorias){
 
         this.id = categorias.getId();
-        this.qualificacao = categorias.getQualificacao();
+        this.rating = categorias.getRating();
         this.descricao = categorias.getDescricao();
         this.url = categorias.getUrl();
     }

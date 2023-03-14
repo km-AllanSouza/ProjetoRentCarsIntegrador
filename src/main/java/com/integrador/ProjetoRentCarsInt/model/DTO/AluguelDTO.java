@@ -3,6 +3,8 @@ package com.integrador.ProjetoRentCarsInt.model.DTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.integrador.ProjetoRentCarsInt.model.Aluguel;
+import com.integrador.ProjetoRentCarsInt.model.Carro;
+import com.integrador.ProjetoRentCarsInt.model.Cliente;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -25,11 +27,9 @@ public class AluguelDTO {
 
     private Long id;
 
-    @JoinColumn(name="cliente_id")
-    private int idCliente;
+    private Long idCliente;
 
-    @JoinColumn(name="carro_id")
-    private int idCarro;
+    private Long idCarro;
 
     @DateTimeFormat(pattern="hh:mm:ss")
     private Time hr_Saida;
