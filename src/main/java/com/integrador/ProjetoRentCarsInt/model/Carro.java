@@ -22,14 +22,20 @@ public class Carro {
 
     private String cor;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categorias_id", referencedColumnName = "Categorias_IDs")
+    private Categorias idCategoria;
 
-    @JoinColumn(name = "Categorias_IDs")
-    private Long idCategoria;
-
-    public Carro(String modelo, String marca, String cor, Long idCategoria) {
+    public Carro(String modelo, String marca, String cor, Categorias idCategoria) {
         this.modelo = modelo;
         this.marca = marca;
         this.cor = cor;
         this.idCategoria = idCategoria;
+    }
+
+    public Carro(String modelo, String marca, String cor) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.cor = cor;
     }
 }

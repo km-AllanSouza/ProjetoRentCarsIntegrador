@@ -25,7 +25,7 @@ public class CarroDTO {
 
     private String cor;
 
-    private Long idCategoria;
+    private Categorias idCategoria;
 
     public CarroDTO(Carro carro){
         this.id = carro.getId();

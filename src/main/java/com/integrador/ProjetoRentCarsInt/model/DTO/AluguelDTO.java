@@ -27,9 +27,9 @@ public class AluguelDTO {
 
     private Long id;
 
-    private Long idCliente;
+    private Cliente idCliente;
 
-    private Long idCarro;
+    private Carro idCarro;
 
     @DateTimeFormat(pattern="hh:mm:ss")
     private Time hr_Saida;

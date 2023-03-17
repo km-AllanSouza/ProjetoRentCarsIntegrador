@@ -20,11 +20,13 @@ public class Aluguel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="Aluguel_IDs")
     private Long id;
-    @JoinColumn(name="Clientes_IDs")
-    private Long idCliente;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id", referencedColumnName = "Clientes_IDs")
+    private Cliente idCliente;
 
-    @JoinColumn(name="Carros_IDs")
-    private Long idCarro;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "carro_id", referencedColumnName = "Carros_IDs")
+    private Carro idCarro;
 
     @DateTimeFormat(pattern="hh:mm:ss")
     private Time hr_Saida;
@@ -40,9 +42,16 @@ public class Aluguel {
     @JsonFormat(pattern = "dd-mm-yyyy")
     private Date dt_Entrega;
 
-    public Aluguel(Long idCliente, Long idCarro, Time hr_Saida, Date dt_Saida, Time hr_Entrega, Date dt_Entrega) {
+    public Aluguel(Cliente idCliente, Carro idCarro, Time hr_Saida, Date dt_Saida, Time hr_Entrega, Date dt_Entrega) {
         this.idCliente = idCliente;
         this.idCarro = idCarro;
+        this.hr_Saida = hr_Saida;
+        this.dt_Saida = dt_Saida;
+        this.hr_Entrega = hr_Entrega;
+        this.dt_Entrega = dt_Entrega;
+    }
+
+    public Aluguel(Time hr_Saida, Date dt_Saida, Time hr_Entrega, Date dt_Entrega) {
         this.hr_Saida = hr_Saida;
         this.dt_Saida = dt_Saida;
         this.hr_Entrega = hr_Entrega;
