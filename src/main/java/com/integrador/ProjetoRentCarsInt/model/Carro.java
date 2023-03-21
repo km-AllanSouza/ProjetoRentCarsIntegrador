@@ -22,9 +22,13 @@ public class Carro {
 
     private String cor;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categorias_id", referencedColumnName = "Categorias_IDs")
     private Categorias idCategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "carroIMGurl_id",referencedColumnName = "carrosIMGurl_IDs")
+    private CarroIMGurl idCarroIMGurl;
 
     public Carro(String modelo, String marca, String cor, Categorias idCategoria) {
         this.modelo = modelo;

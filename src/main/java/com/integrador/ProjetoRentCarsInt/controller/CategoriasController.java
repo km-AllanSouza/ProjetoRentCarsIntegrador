@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -53,6 +54,18 @@ public class CategoriasController {
         CategoriasDTO categoriaslDTO = mapper.convertValue(categorias,CategoriasDTO.class);
 
         return new ResponseEntity(categoriaslDTO,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "buscarating",method = RequestMethod.GET)
+    public ResponseEntity buscaCategoriasRating(@RequestParam("rating")int rating){
+
+        List<CategoriasDTO> categoriasDTOrating = categoriasService.buscarCategoriasRating(rating);
+
+        if (categoriasDTOrating.isEmpty()){
+            return new ResponseEntity("Qualificacao nao encontrada",HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(categoriasDTOrating,HttpStatus.OK);
     }
 
 }

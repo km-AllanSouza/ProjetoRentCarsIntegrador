@@ -2,6 +2,7 @@ package com.integrador.ProjetoRentCarsInt.service;
 
 import com.integrador.ProjetoRentCarsInt.model.Aluguel;
 import com.integrador.ProjetoRentCarsInt.model.DTO.AluguelDTO;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +26,14 @@ class AluguelServiceTest {
 
     static Aluguel aluguelTeste;
 
-    @BeforeEach
-    void doBefore() {
+    @BeforeAll
+    static void doBefore() {
+        aluguelTeste = new Aluguel();
 
-        aluguelTeste = new
-                Aluguel(
-                Time.valueOf("13:20:00"),
-                Date.valueOf("05-10-2023"),
-                Time.valueOf("18:00:00"),
-                Date.valueOf("10-10-2023")
-        );
+        aluguelTeste.setDt_Saida(Date.valueOf("10-10-2023"));
+        aluguelTeste.setHr_Saida(Time.valueOf("10:30:00"));
+        aluguelTeste.setDt_Entrega(Date.valueOf("20-10-2023"));
+        aluguelTeste.setHr_Entrega(Time.valueOf("18:30:00"));
     }
 
     @Test

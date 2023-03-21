@@ -42,4 +42,16 @@ public class CategoriasService {
         return categoriasRepository.findById(id);
     }
 
+    public List<CategoriasDTO> buscarCategoriasRating(int rating){
+        List<Categorias> categoriasList = categoriasRepository.findAll();
+        List<CategoriasDTO> categoriasDTOList = new ArrayList<>();
+
+        for ( Categorias e : categoriasList){
+            if (e.getRating() == rating){
+                categoriasDTOList.add(new CategoriasDTO(e));
+            }
+        }
+        return categoriasDTOList;
+    }
+
 }
