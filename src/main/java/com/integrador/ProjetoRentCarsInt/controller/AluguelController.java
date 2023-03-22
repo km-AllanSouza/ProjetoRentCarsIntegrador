@@ -4,7 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.integrador.ProjetoRentCarsInt.model.Aluguel;
 import com.integrador.ProjetoRentCarsInt.model.DTO.AluguelDTO;
 import com.integrador.ProjetoRentCarsInt.service.AluguelService;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,46 +14,52 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/aluguel")
+@RequestMapping("/alugueis")
+@Api(tags = "Aluguel")
 public class AluguelController {
 
     @Autowired
     AluguelService aluguelService;
 
     @PostMapping
-    public ResponseEntity salvarAluguel(@RequestBody Aluguel aluguel){
+    @ApiOperation(value = "Cria um novo aluguel")
+    public ResponseEntity salvarAluguel(@RequestBody Aluguel aluguel) {
         return new ResponseEntity(aluguelService.salvarAluguel(aluguel), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity buscarAluguel(){
-        return new ResponseEntity(aluguelService.listarAluguel(),HttpStatus.OK);
+    @ApiOperation(value = "Retorna uma lista de todos os aluguéis")
+    public ResponseEntity buscarAluguel() {
+        return new ResponseEntity(aluguelService.listarAluguel(), HttpStatus.OK);
     }
 
     @PatchMapping
-    public ResponseEntity alterarAluguel(@RequestBody Aluguel aluguel){
+    @ApiOperation(value = "Atualiza um aluguel existente")
+    public ResponseEntity alterarAluguel(@RequestBody Aluguel aluguel) {
         aluguelService.alterarAluguel(aluguel);
-        return new ResponseEntity(aluguel.getId(),HttpStatus.OK);
+        return new ResponseEntity(aluguel.getId(), HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity deleteAluguel(@RequestParam Long id){
+    @ApiOperation(value = "Exclui um aluguel pelo ID")
+    public ResponseEntity deleteAluguel(@RequestParam Long id) {
         aluguelService.excluirAluguel(id);
-        return new ResponseEntity("ID: "+ id +" Excluido.",HttpStatus.OK);
+        return new ResponseEntity("ID: " + id + " Excluido.", HttpStatus.OK);
     }
 
-    @RequestMapping(value ="buscaid", method = RequestMethod.GET)
-    public ResponseEntity buscarAluguelID(@RequestParam("id") Long id){
+    @GetMapping(value = "buscaid")
+    @ApiOperation(value = "Busca um aluguel pelo ID")
+    public ResponseEntity buscarAluguelID(@RequestParam("id") Long id) {
         ObjectMapper mapper = new ObjectMapper();
 
         Optional<Aluguel> aluguelOptional = aluguelService.buscarAluguelID(id);
-        if(aluguelOptional.isEmpty()){
-            return new ResponseEntity("Aluguel nao encontrado",HttpStatus.NOT_FOUND);
+        if (aluguelOptional.isEmpty()) {
+            return new ResponseEntity("Aluguel nao encontrado", HttpStatus.NOT_FOUND);
         }
         Aluguel aluguel = aluguelOptional.get();
-        AluguelDTO aluguelDTO = mapper.convertValue(aluguel,AluguelDTO.class);
+        AluguelDTO aluguelDTO = mapper.convertValue(aluguel, AluguelDTO.class);
 
-        return new ResponseEntity(aluguelDTO,HttpStatus.OK);
+        return new ResponseEntity(aluguelDTO, HttpStatus.OK);
     }
 
 }
